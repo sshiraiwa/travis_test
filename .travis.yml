@@ -3,11 +3,6 @@ dist: focal
 
 language: python
 
-python:
-  - "3.6"
-  - "3.7"
-  - "3.8"
-  
 branches:
   only:
     - test
@@ -16,6 +11,7 @@ jobs:
      - stage: prep
        os: linux
        dist: focal
+       python: ["3.6", "3.7", "3.8"]       
        env: CUDA=NO
             MPI=NO
        script:
@@ -24,7 +20,8 @@ jobs:
           - echo "Done"	  
 
      - os: linux
-       dist: focal
+       dist: focal     
+       python: ["3.6", "3.7", "3.8"]     
        env: CUDA=NO
             MPI=YES
        script:
@@ -35,6 +32,7 @@ jobs:
 
      - os: linux
        dist: focal
+       python: ["3.6", "3.7", "3.8"]              
        env: CUDA=YES
             MPI=NO
        script:
@@ -44,6 +42,7 @@ jobs:
        
      - os: linux
        dist: focal
+       python: ["3.6", "3.7", "3.8"]              
        env: CUDA=YES
             MPI=YES
        script:
