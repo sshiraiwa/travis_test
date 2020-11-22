@@ -1,4 +1,5 @@
 language: python
+sudo: enabled
 
 python:
   - "3.6"
@@ -16,9 +17,10 @@ env:
 
 # command to install dependencies
 before_install:
-  - ./add_dummy.sh
-  - echo $MESSAGE
-  - echo $RESULT
+  - >
+    if [ "${USE_CUDA_PARALLEL}" = "11" ] | [ "${USE_CUDA_PARALLEL}" = "10" ]; then
+    ./add_cuda.sh; fi  
+
 install:
   - pip install -r requirements.txt
 
