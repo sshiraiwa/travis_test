@@ -22,15 +22,15 @@ jobs:
       env: USE_CUDA_PARALLEL=00
 
 env:
-  - USE_CUDA_PARALLEL=00
-  - USE_CUDA_PARALLEL=10
-  - USE_CUDA_PARALLEL=01
-  - USE_CUDA_PARALLEL=11      
+  - USE_CUDA_PARALLEL="00"
+  - USE_CUDA_PARALLEL="10"
+  - USE_CUDA_PARALLEL="01"
+  - USE_CUDA_PARALLEL="11"      
 
 # command to install dependencies
 before_install:
   - >
-    if [ "${USE_CUDA_PARALLEL}" = "11" ] | [ "${USE_CUDA_PARALLEL}" = "10" ]; then
+    if [ "${USE_CUDA_PARALLEL}" = "11" ] || [ "${USE_CUDA_PARALLEL}" = "10" ]; then
     ./add_cuda.sh; fi
   - ls -l /usr/local/
 
