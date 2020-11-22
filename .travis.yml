@@ -31,8 +31,10 @@ matrix:
 stages:
 
 before_install:
-  - add_cuda.sh
   if: env(WITH_CUDA) = 1
+  - add_dummy.sh
+
+  - add_dummy.sh
 
 install:
   - pip install -r requirements.txt
