@@ -9,6 +9,30 @@ branches:
   only:
     - test
 
+matrix:
+  include:
+    - name: CUDA 10
+      env:
+      - CUDA=10.1.105-1
+      - CUDA_SHORT=10.1
+      - UBUNTU_VERSION=ubuntu2004
+      - WITH_CUDA=1
+      - WITH_PARALLEL=0
+    - name: SERIAL
+      env:
+      - WITH_CUDA=0      
+      - WITH_PARALLEL=0
+    - name: PARALLEL
+      env:
+      - WITH_CUDA=0     
+      - WITH_PARALLEL=1
+
+# command to install dependencies
+before_install:
+  if: env(WITH_CUDA) = 1
+  - add_dummy.sh
+
+  - add_dummy.sh
 
 install:
   - pip install -r requirements.txt
