@@ -32,7 +32,7 @@ before_install:
   - >
     if [ "${USE_CUDA_PARALLEL}" = "11" ] | [ "${USE_CUDA_PARALLEL}" = "10" ]; then
     ./add_cuda.sh; fi
-    ls -l /usr/local/
+  - ls -l /usr/local/
 
 install:
   - pip install -r requirements.txt
