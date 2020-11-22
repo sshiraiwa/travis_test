@@ -1,14 +1,42 @@
 language: python
+
 python:
   - "3.6"
   - "3.7"
   - "3.8"
+  
 branches:
   only:
     - test
+
+matrix:
+  include:
+    - name: CUDA 10
+      env:
+      - CUDA=10.1.105-1
+      - CUDA_SHORT=10.1
+      - UBUNTU_VERSION=ubuntu2004
+      - WITH_CUDA=1
+      - WITH_PARALLEL=0
+    - name: SERIAL
+      env:
+      - WITH_CUDA=0      
+      - WITH_PARALLEL=0
+    - name: PARALLEL
+      env:
+      - WITH_CUDA=0     
+      - WITH_PARALLEL=1
+
 # command to install dependencies
+stages:
+
+before_install:
+  - add_cuda.sh
+  if: env(WITH_CUDA) = 1
+
 install:
   - pip install -r requirements.txt
-# command to run tests
+
 script:
-  - python3 setup.py install 
+  - echo "Done"
+
