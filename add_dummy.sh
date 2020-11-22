@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo "Dummy"
+export MESSAGE="hoge"
 if [ "${USE_CUDA_PARALLEL}" = "00" ]; then
     export RESULT="00"
 fi
