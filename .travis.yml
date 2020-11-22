@@ -9,7 +9,7 @@ branches:
   only:
     - test
 
-matrix:
+jobs:
   include:
     - name: CUDA 10
       env:
