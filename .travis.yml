@@ -1,53 +1,41 @@
-os: linux
-dist: focal
+dist: focul
 
 language: python
 
+sudo: enabled
+
+python:
+  - "3.6"
+  - "3.7"
+  - "3.8"
+  
 branches:
   only:
     - test
 jobs:
-   include:
-     - stage: prep
-       os: linux
-       dist: focal
-       python: ["3.6", "3.7", "3.8"]       
-       env: CUDA=NO
-            MPI=NO
-       script:
-          - ./add_dummy.sh
-          - pip install -r requirements.txt
-          - echo "Done"	  
+  include:
+    - os: osx
+      osx_image: xcode11.2
+      compiler: clang
+      name: "Mac: Serial"
+      env: USE_CUDA_PARALLEL=00
 
-     - os: linux
-       dist: focal     
-       python: ["3.6", "3.7", "3.8"]     
-       env: CUDA=NO
-            MPI=YES
-       script:
-          - ./add_dummy.sh
-          - pip install -r requirements.txt
-          - echo "Done"	  
-       
+env:
+  - USE_CUDA_PARALLEL=00
+  - USE_CUDA_PARALLEL=10
+  - USE_CUDA_PARALLEL=01
+  - USE_CUDA_PARALLEL=11      
 
-     - os: linux
-       dist: focal
-       python: ["3.6", "3.7", "3.8"]              
-       env: CUDA=YES
-            MPI=NO
-       script:
-          - ./add_cuda.sh
-          - pip install -r requirements.txt
-          - echo "Done"	  
-       
-     - os: linux
-       dist: focal
-       python: ["3.6", "3.7", "3.8"]              
-       env: CUDA=YES
-            MPI=YES
-       script:
-          - ./add_cuda.sh
-          - pip install -r requirements.txt
-          - echo "Done"	  
+# command to install dependencies
+before_install:
+  - >
+    if [ "${USE_CUDA_PARALLEL}" = "11" ] | [ "${USE_CUDA_PARALLEL}" = "10" ]; then
+    ./add_cuda.sh; fi  
 
+install:
+  - pip install -r requirements.txt
+
+script:
+  - echo $USE_CUDA_PARALLEL
+  - echo "Done"
 
