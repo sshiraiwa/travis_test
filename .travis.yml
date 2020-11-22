@@ -40,8 +40,9 @@ env:
 
 # command to install dependencies
 before_install:
-  if: env(USE_CUDA_PARALLEL) = 00
-  - add_dummy.sh
+  -if: env(USE_CUDA_PARALLEL) = 00
+     script:
+        - add_dummy.sh
 
   - add_dummy.sh
 
