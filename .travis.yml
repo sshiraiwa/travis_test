@@ -1,5 +1,7 @@
+os: linux
+dist: focal
+
 language: python
-sudo: enabled
 
 python:
   - "3.6"
@@ -9,22 +11,44 @@ python:
 branches:
   only:
     - test
-env:
-  - USE_CUDA_PARALLEL=00
-  - USE_CUDA_PARALLEL=10
-  - USE_CUDA_PARALLEL=01
-  - USE_CUDA_PARALLEL=11      
+jobs:
+   include:
+     - stage: prep
+       os: linux
+       dist: focal
+       env: CUDA=NO
+            MPI=NO
+       script:
+          - ./add_dummy.sh
+          - pip install -r requirements.txt
+          - echo "Done"	  
 
-# command to install dependencies
-before_install:
-  - >
-    if [ "${USE_CUDA_PARALLEL}" = "11" ] | [ "${USE_CUDA_PARALLEL}" = "10" ]; then
-    ./add_cuda.sh; fi  
+     - os: linux
+       dist: focal
+       env: CUDA=NO
+            MPI=YES
+       script:
+          - ./add_dummy.sh
+          - pip install -r requirements.txt
+          - echo "Done"	  
+       
 
-install:
-  - pip install -r requirements.txt
+     - os: linux
+       dist: focal
+       env: CUDA=YES
+            MPI=NO
+       script:
+          - ./add_cuda.sh
+          - pip install -r requirements.txt
+          - echo "Done"	  
+       
+     - os: linux
+       dist: focal
+       env: CUDA=YES
+            MPI=YES
+       script:
+          - ./add_cuda.sh
+          - pip install -r requirements.txt
+          - echo "Done"	  
 
-script:
-  - echo $USE_CUDA_PARALLEL
-  - echo "Done"
 
