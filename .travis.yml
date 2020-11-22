@@ -17,6 +17,7 @@ env:
 # command to install dependencies
 before_install:
   - ./add_dummy.sh
+  - echo $MESSAGE
   - echo $RESULT
 install:
   - pip install -r requirements.txt
