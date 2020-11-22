@@ -8,18 +8,17 @@ python:
 branches:
   only:
     - test
-#env:
-#  - USE_CUDA_PARALLEL=00
-#  - USE_CUDA_PARALLEL=10
-#  - USE_CUDA_PARALLEL=01
-#  - USE_CUDA_PARALLEL=11      
+env:
+  - USE_CUDA_PARALLEL=00
+  - USE_CUDA_PARALLEL=10
+  - USE_CUDA_PARALLEL=01
+  - USE_CUDA_PARALLEL=11      
 
 # command to install dependencies
 before_install:
-  #-if: env(USE_CUDA_PARALLEL) = 00
-  #   script:
-  #      - add_dummy.shzgxs
-  - add_dummy.sh
+  - if: env(USE_CUDA_PARALLEL) = 00
+      ./add_dummy.sh
+  - ./add_dummy.sh
 
 install:
   - pip install -r requirements.txt
