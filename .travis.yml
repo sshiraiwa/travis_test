@@ -8,7 +8,19 @@ python:
    - "3.6"
 #  - "3.7"
 #  - "3.8"
-  
+
+addons:
+  apt:
+     packages:
+       # GCC 4.9
+       # - g++-4.9
+       # MPICH
+       - mpich
+       - libmpich-dev
+       # OpenMPI
+       # - openmpi-bin
+       # - libopenmpi-dev
+       
 branches:
   only:
     - test
@@ -24,8 +36,8 @@ jobs:
 env:
   - USE_CUDA_PARALLEL="00"    # serial
   - USE_CUDA_PARALLEL="10"    # parallel
-  - USE_CUDA_PARALLEL="01"    # serial + cuda
-  - USE_CUDA_PARALLEL="11"    # parallel + cuda  
+#  - USE_CUDA_PARALLEL="01"    # serial + cuda
+#  - USE_CUDA_PARALLEL="11"    # parallel + cuda  
 
 # command to install dependencies
 before_install:
@@ -42,7 +54,10 @@ install:
 script:
   - echo $USE_CUDA_PARALLEL
   - echo $PATH
-  - which nvcc
+  ->
+    if [ "${USE_CUDA_PARALLEL}" = "11" ] || [ "${USE_CUDA_PARALLEL}" = "10" ]; then  
+    which nvcc;
+    fi
   - echo "Done"
   - python3 --version
 
