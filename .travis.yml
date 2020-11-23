@@ -5,9 +5,9 @@ language: python
 sudo: enabled
 
 python:
-  - "3.6"
-  - "3.7"
-  - "3.8"
+   - "3.6"
+#  - "3.7"
+#  - "3.8"
   
 branches:
   only:
@@ -19,19 +19,21 @@ jobs:
       compiler: clang
       language: shell
       name: "Mac: Serial"
-      env: USE_CUDA_PARALLEL=00
+      env: USE_CUDA_PARALLEL=00 
 
 env:
-  - USE_CUDA_PARALLEL="00"
-  - USE_CUDA_PARALLEL="10"
-  - USE_CUDA_PARALLEL="01"
-  - USE_CUDA_PARALLEL="11"      
+  - USE_CUDA_PARALLEL="00"    # serial
+  - USE_CUDA_PARALLEL="10"    # parallel
+  - USE_CUDA_PARALLEL="01"    # serial + cuda
+  - USE_CUDA_PARALLEL="11"    # parallel + cuda  
 
 # command to install dependencies
 before_install:
   - >
     if [ "${USE_CUDA_PARALLEL}" = "11" ] || [ "${USE_CUDA_PARALLEL}" = "10" ]; then
-    ./add_cuda.sh; fi
+    ./add_cuda.sh;
+    export PATH=/usr/local/cuda-11.1/bin:$PATH;
+    fi
   - ls -l /usr/local/
 
 install:
@@ -39,6 +41,8 @@ install:
 
 script:
   - echo $USE_CUDA_PARALLEL
+  - echo $PATH
+  - which nvcc
   - echo "Done"
-  - python --version
+  - python3 --version
 
