@@ -1,6 +1,6 @@
 dist: focul
 
-language: cpp
+language: python
 
 sudo: enabled
 
@@ -17,7 +17,7 @@ jobs:
     - os: osx
       osx_image: xcode11.2
       compiler: clang
-      python: "3.8"
+      language: shell
       name: "Mac: Serial"
       env: USE_CUDA_PARALLEL=00
 
@@ -40,4 +40,5 @@ install:
 script:
   - echo $USE_CUDA_PARALLEL
   - echo "Done"
+  - python --version
 
