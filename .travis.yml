@@ -71,4 +71,4 @@ script:
     fi
   - echo "Done"
   - python3 --version
-
+  - echo $TRAVIS_BUILD_DIR
