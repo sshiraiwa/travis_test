@@ -35,8 +35,8 @@ jobs:
 
 env:
   - USE_CUDA_PARALLEL="00"    # serial
-  - USE_CUDA_PARALLEL="10"    # parallel
-#  - USE_CUDA_PARALLEL="01"    # serial + cuda
+#  - USE_CUDA_PARALLEL="10"    # cuda
+  - USE_CUDA_PARALLEL="01"    # parallel
 #  - USE_CUDA_PARALLEL="11"    # parallel + cuda  
 
 # command to install dependencies
