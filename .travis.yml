@@ -1,6 +1,6 @@
 dist: focul
 
-language: python
+language: cpp
 
 sudo: enabled
 
