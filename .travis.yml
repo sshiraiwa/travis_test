@@ -48,8 +48,9 @@ before_install:
     fi
   - >
     if [ "${USE_CUDA_PARALLEL}" = "01" ] || [ "${USE_CUDA_PARALLEL}" = "11" ]; then
-    which mpicc;    
-    pip3 install mpi4py CC=mpicc CXX=mpicxx;
+    which mpicc;
+    pip3 build mpi4py CC=mpicc CXX=mpicxx;    
+    pip3 install mpi4py
     fi
   - ls -l /usr/local/
 
@@ -63,7 +64,10 @@ script:
     if [ "${USE_CUDA_PARALLEL}" = "11" ] || [ "${USE_CUDA_PARALLEL}" = "10" ]; then  
     which nvcc;
     fi
-  - which mpicc
+  - >
+    if [ "${USE_CUDA_PARALLEL}" = "11" ] || [ "${USE_CUDA_PARALLEL}" = "01" ]; then  
+    which mpicc;
+    fi
   - echo "Done"
   - python3 --version
 
