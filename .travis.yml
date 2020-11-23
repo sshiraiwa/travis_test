@@ -46,6 +46,11 @@ before_install:
     ./add_cuda.sh;
     export PATH=/usr/local/cuda-11.1/bin:$PATH;
     fi
+  - >
+    if [ "${USE_CUDA_PARALLEL}" = "01" ] || [ "${USE_CUDA_PARALLEL}" = "11" ]; then
+    which mpicc;    
+    pip3 install mpi4py CC=mpicc CXX=mpicxx
+    fi
   - ls -l /usr/local/
 
 install:
