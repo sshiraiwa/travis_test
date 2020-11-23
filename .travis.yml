@@ -54,7 +54,7 @@ install:
 script:
   - echo $USE_CUDA_PARALLEL
   - echo $PATH
-  ->
+  - >
     if [ "${USE_CUDA_PARALLEL}" = "11" ] || [ "${USE_CUDA_PARALLEL}" = "10" ]; then  
     which nvcc;
     fi
