@@ -47,8 +47,8 @@ jobs:
             sudo pip install mpi4py --prefix=~/sandbox;
             #python -c "import mpi4py;print(mpi4py.get_include())";
         fi
-	ls -l ~/sandbox
-	ls -l ~/sandbox/lib
+        ls -l ~/sandbox
+        ls -l ~/sandbox/lib
         #pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Lint with flake8
