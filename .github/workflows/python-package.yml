@@ -36,8 +36,8 @@ jobs:
         mkdir -p ~/sandbox
         PYTHONVERSION=$(python -c "import os;print(os.path.basename(os.path.dirname(os.__file__))[-3:])")
         PYTHONLIB=~/sandbox/lib/python${PYTHONVERSION};
-        export PYTHONPATH=$PYTHONLIB/site-packages:$PYTHONPATH  
-	
+        export PYTHONPATH=$PYTHONLIB/site-packages:$PYTHONPATH
+
         python -m pip install --upgrade pip
         python3 --version
         python --version
