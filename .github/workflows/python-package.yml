@@ -47,7 +47,7 @@ jobs:
         pwd
         if [ "${USE_CUDA_PARALLEL}" = "11" ] || [ "${USE_CUDA_PARALLEL}" = "10" ]; then
             echo $cuda
-            source ./add_cuda2.sh;
+            source ./add_cuda.sh;
         fi
         if [ "${USE_CUDA_PARALLEL}" = "01" ] || [ "${USE_CUDA_PARALLEL}" = "11" ]; then
             sudo apt-get install mpich;

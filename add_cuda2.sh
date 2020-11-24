@@ -1,17 +1,5 @@
-# @todo - better / more robust parsing of inputs from env vars.
-## -------------------
-## Constants
-## -------------------
+# https://github.com/ptheywood/cuda-cmake-github-actions
 
-# @todo - apt repos/known supported versions?
-
-# @todo - GCC support matrix?
-
-# List of sub-packages to install.
-# @todo - pass this in from outside the script? 
-# @todo - check the specified subpackages exist via apt pre-install?  apt-rdepends cuda-9-0 | grep "^cuda-"?
-
-# Ideally choose from the list of meta-packages to minimise variance between cuda versions (although it does change too)
 CUDA_PACKAGES_IN=(
     "command-line-tools"
     "libraries-dev"
