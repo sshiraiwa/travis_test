@@ -36,7 +36,6 @@ jobs:
         python -m pip install --upgrade pip
         which python3
         which python
-	
         if [ "${USE_CUDA_PARALLEL}" = "01" ] || [ "${USE_CUDA_PARALLEL}" = "11" ]; then
             sudo apt-get install mpich;
             sudo apt-get install libmpich-dev;
