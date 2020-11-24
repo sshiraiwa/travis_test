@@ -38,7 +38,7 @@ jobs:
         PYTHONVERSION=$(python -c "import os;print(os.path.basename(os.path.dirname(os.__file__))[-3:])")
         PYTHONLIB=~/sandbox/lib/python${PYTHONVERSION};
         export PYTHONPATH=$PYTHONLIB/site-packages:$PYTHONPATH
-
+        echo $PYTHONPATH
         sudo python -m pip install --upgrade pip setuptools wheel
         sudo python3 -m pip install --upgrade pip setuptools wheel	
         ls -l $(which python3)
