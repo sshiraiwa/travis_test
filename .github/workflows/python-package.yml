@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     strategy:
-      fail_fast: false
+      fail-fast: false
       matrix:
         python-version: [3.6, 3.7, 3.8]
         os: [ubuntu-latest]
