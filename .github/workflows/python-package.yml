@@ -42,18 +42,19 @@ jobs:
         python -m pip install --upgrade pip setuptools wheel
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi	
         pip install matplotlib --prefix=~/sandbox
+        python -c "import matplotlib;print(matplotlib.__file__)"	
         #sudo python3 -m pip install --upgrade pip setuptools wheel	
         pwd
-        #if [ "${USE_CUDA_PARALLEL}" = "01" ] || [ "${USE_CUDA_PARALLEL}" = "11" ]; then
-        #    sudo apt-get install mpich;
-        #    sudo apt-get install libmpich-dev;
-        #    sudo python3 -m pip install mpi4py --no-cache-dir --prefix=~/sandbox;
+        if [ "${USE_CUDA_PARALLEL}" = "01" ] || [ "${USE_CUDA_PARALLEL}" = "11" ]; then
+            sudo apt-get install mpich;
+            sudo apt-get install libmpich-dev;
+            pip install mpi4py --no-cache-dir --prefix=~/sandbox;
         #    ls -l ~/sandbox/lib;
         #    python3 -c "import mpi4py;print(mpi4py.get_include())";	    
-        #fi
+        fi
         ls -l ~/sandbox
         ls -l ~/sandbox/lib
-        #echo $PYTHONPATH
+        echo $PYTHONPATH
         #pip install flake8 pytest
         
     - name: Lint with flake8
