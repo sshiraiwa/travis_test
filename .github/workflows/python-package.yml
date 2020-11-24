@@ -48,7 +48,7 @@ jobs:
             sudo apt-get install mpich;
             sudo apt-get install libmpich-dev;
             sudo python3 -m pip install mpi4py --no-cache-dir --prefix=~/sandbox;
-            #python -c "import mpi4py;print(mpi4py.get_include())";
+            python3 -c "import mpi4py;print(mpi4py.get_include())";
         fi
         ls -l ~/sandbox
         ls -l ~/sandbox/lib
