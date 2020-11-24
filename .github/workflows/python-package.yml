@@ -40,8 +40,8 @@ jobs:
 
         python -m pip install --upgrade pip setuptools wheel
         python3 -m pip install --upgrade pip setuptools wheel	
-        python3 --version
-        python --version
+        which python3
+        which python
         which pip
         which pip3	
         if [ "${USE_CUDA_PARALLEL}" = "01" ] || [ "${USE_CUDA_PARALLEL}" = "11" ]; then
