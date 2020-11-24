@@ -12,7 +12,7 @@ jobs:
       matrix:
         python-version: [3.6, 3.7, 3.8]
         os:
-	   - ubuntu-latest
+           - ubuntu-latest
         env:
            - { USE_CUDA_PARALLEL: "00"}
            - { USE_CUDA_PARALLEL: "10"}	
@@ -23,8 +23,8 @@ jobs:
            os: macos-latest
            experimental: true	
            python-version: 3.6
-#	   env:
-#	       USE_CUDA_PARALLEL: "11"
+           env:
+              USE_CUDA_PARALLEL: "11"
 #
     runs-on: ${{ matrix.os }}	   
     env: ${{ matrix.env }}		   
