@@ -13,10 +13,10 @@ jobs:
         python-version: [3.6, 3.7, 3.8]
         os: [ubuntu-latest]
         env:
-           - { USE_CUDA_PARALLEL: "00"}
-           - { USE_CUDA_PARALLEL: "10"}	
+           #- { USE_CUDA_PARALLEL: "00"}
+           #- { USE_CUDA_PARALLEL: "10"}	
            - { USE_CUDA_PARALLEL: "01"}
-           - { USE_CUDA_PARALLEL: "11"}	   
+           #- { USE_CUDA_PARALLEL: "11"}	   
 
         include:
            - os: macos-latest
@@ -39,7 +39,7 @@ jobs:
         export PYTHONPATH=$PYTHONLIB/site-packages:$PYTHONPATH
 
         python -m pip install --upgrade pip setuptools wheel
-        python -m pip3 install --upgrade pip setuptools wheel	
+        python -m pip install --upgrade pip setuptools wheel	
         python3 --version
         python --version
         which pip
@@ -47,7 +47,7 @@ jobs:
         if [ "${USE_CUDA_PARALLEL}" = "01" ] || [ "${USE_CUDA_PARALLEL}" = "11" ]; then
             sudo apt-get install mpich;
             sudo apt-get install libmpich-dev;
-            sudo python3-m pip3 install mpi4py --no-cache-dir --prefix=~/sandbox;
+            sudo python3 -m pip install mpi4py --no-cache-dir --prefix=~/sandbox;
             #python -c "import mpi4py;print(mpi4py.get_include())";
         fi
         ls -l ~/sandbox
