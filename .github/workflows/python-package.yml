@@ -46,12 +46,12 @@ jobs:
         if [ "${USE_CUDA_PARALLEL}" = "01" ] || [ "${USE_CUDA_PARALLEL}" = "11" ]; then
             sudo apt-get install mpich;
             sudo apt-get install libmpich-dev;
-            sudo pip install mpi4py --prefix=~/sandbox;
+            sudo python -m pip install mpi4py --prefix=~/sandbox;
             #python -c "import mpi4py;print(mpi4py.get_include())";
         fi
         ls -l ~/sandbox
         ls -l ~/sandbox/lib
-	echo $PYTONPATH
+        echo $PYTONPATH
         #pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Lint with flake8
