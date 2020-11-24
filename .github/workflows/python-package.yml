@@ -21,7 +21,7 @@ jobs:
         include:
            - os: macos-latest
              python-version: 3.6
-             env: {USE_CUDA_PARALLEL: "11"}
+             env: {USE_CUDA_PARALLEL: "00"}
 #
     runs-on: ${{ matrix.os }}	   
     env: ${{ matrix.env }}		   
