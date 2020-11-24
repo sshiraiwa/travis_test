@@ -48,8 +48,6 @@ jobs:
         if [ "${USE_CUDA_PARALLEL}" = "11" ] || [ "${USE_CUDA_PARALLEL}" = "10" ]; then
             echo $cuda
             source ./add_cuda2.sh;
-            export PATH=/usr/local/cuda-${cuda}/bin:$PATH;
-            ls -l /usr/local/
         fi
         if [ "${USE_CUDA_PARALLEL}" = "01" ] || [ "${USE_CUDA_PARALLEL}" = "11" ]; then
             sudo apt-get install mpich;
@@ -58,12 +56,14 @@ jobs:
 
             python -c "import mpi4py;print(mpi4py.get_include())";	    
         fi
+        ls -l /usr/local/	
         ls -l $PYTHONLIB	
         #pip install flake8 pytest
         
     - name: Lint with flake8
       run: |
-        echo "${USE_CUDA_PARALLEL}"
+        export PATH=/usr/local/cuda-${cuda}/bin:$PATH;      
+        echo $PATH
         if [ "${USE_CUDA_PARALLEL}" = "11" ] || [ "${USE_CUDA_PARALLEL}" = "10" ]; then
             which nvcc
         fi
