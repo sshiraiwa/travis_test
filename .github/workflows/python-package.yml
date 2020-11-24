@@ -52,8 +52,6 @@ jobs:
         fi
         ls -l ~/sandbox
         ls -l ~/sandbox/lib
-
-        ls -l $PYTHONPATH
         #pip install flake8 pytest
         
     - name: Lint with flake8
