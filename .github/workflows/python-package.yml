@@ -62,6 +62,7 @@ jobs:
         
     - name: Lint with flake8
       run: |
+        echo "${USE_CUDA_PARALLEL}"
         if [ "${USE_CUDA_PARALLEL}" = "11" ] || [ "${USE_CUDA_PARALLEL}" = "10" ]; then
             which nvcc
         fi
