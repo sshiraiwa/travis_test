@@ -39,6 +39,7 @@ jobs:
         export PYTHONPATH=$PYTHONLIB/site-packages:$PYTHONPATH
 
         python -m pip install --upgrade pip setuptools wheel
+        python -m pip3 install --upgrade pip setuptools wheel	
         python3 --version
         python --version
         which pip
