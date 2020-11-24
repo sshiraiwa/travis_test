@@ -18,12 +18,12 @@ jobs:
            - { USE_CUDA_PARALLEL: "01"}
            - { USE_CUDA_PARALLEL: "11"}	   
 
-
         include:
            os: macos-latest
            experimental: true	
            python-version: 3.6
 	   env: { USE_CUDA_PARALLEL: "11"}
+	   
     runs-on: ${{ matrix.os }}	   
     env: ${{ matrix.env }}		   
     steps:
