@@ -38,7 +38,7 @@ jobs:
         PYTHONLIB=~/sandbox/lib/python${PYTHONVERSION};
         export PYTHONPATH=$PYTHONLIB/site-packages:$PYTHONPATH
 
-        python -m pip install --upgrade pip
+        python -m pip install --upgrade pip setuptools wheel
         python3 --version
         python --version
         which pip
@@ -46,12 +46,12 @@ jobs:
         if [ "${USE_CUDA_PARALLEL}" = "01" ] || [ "${USE_CUDA_PARALLEL}" = "11" ]; then
             sudo apt-get install mpich;
             sudo apt-get install libmpich-dev;
-            sudo python -m pip install mpi4py --prefix=~/sandbox;
+            sudo python -m pip install mpi4py --no-cache-dir --prefix=~/sandbox;
             #python -c "import mpi4py;print(mpi4py.get_include())";
         fi
         ls -l ~/sandbox
         ls -l ~/sandbox/lib
-        echo $PYTONPATH
+        echo $PYTHONPATH
         #pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Lint with flake8
