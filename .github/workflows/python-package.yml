@@ -33,13 +33,18 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
+        mkdir -p ~/sandbox
+        PYTHONVERSION=$(python -c "import os;print(os.path.basename(os.path.dirname(os.__file__))[-3:])")
+        PYTHONLIB=~/sandbox/lib/python${PYTHONVERSION};
+        export PYTHONPATH=$PYTHONLIB/site-packages:$PYTHONPATH  
+	
         python -m pip install --upgrade pip
-        which python3
-        which python
+        python3 --version
+        python --version
         if [ "${USE_CUDA_PARALLEL}" = "01" ] || [ "${USE_CUDA_PARALLEL}" = "11" ]; then
             sudo apt-get install mpich;
             sudo apt-get install libmpich-dev;
-            sudo pip install mpi4py;
+            sudo pip install mpi4py --prefix=~/sandbox;
             python -c "import mpi4py;print(mpi4py.get_include())";
         fi
         #pip install flake8 pytest
