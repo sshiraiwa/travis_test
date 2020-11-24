@@ -9,6 +9,7 @@ on:
 jobs:
   build:
     strategy:
+      fail_fast: false
       matrix:
         python-version: [3.6, 3.7, 3.8]
         os: [ubuntu-latest]
@@ -33,25 +34,30 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
+        python -m pip install --upgrade pip setuptools wheel
+	
         mkdir -p ~/sandbox/lib
         PYTHONLIB=~/sandbox/lib/python${{ matrix.python-version }}/site-packages
         export PYTHONPATH=$PYTHONLIB:$PYTHONPATH
         echo $PYTHONPATH
-        python -m pip install --upgrade pip setuptools wheel
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi	
-        pip install matplotlib --prefix=~/sandbox
-        python -c "import matplotlib;print(matplotlib.__file__)"	
+
+        #if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        pip install numpy --prefix=~/sandbox	
+        python -c "import numpy;print(numpy.__file__)"	
         pwd
+        if [ "${USE_CUDA_PARALLEL}" = "11" ] || [ "${USE_CUDA_PARALLEL}" = "10" ]; then
+            ./add_cuda.sh;
+            export PATH=/usr/local/cuda-11.1/bin:$PATH;
+	    ls -l /usr/local/cuda-11.1/bin
+        fi
         if [ "${USE_CUDA_PARALLEL}" = "01" ] || [ "${USE_CUDA_PARALLEL}" = "11" ]; then
             sudo apt-get install mpich;
             sudo apt-get install libmpich-dev;
             pip install mpi4py --no-cache-dir --prefix=~/sandbox;
-        #    ls -l ~/sandbox/lib;
-            ls -l $PYTHONLIB
+
             python -c "import mpi4py;print(mpi4py.get_include())";	    
         fi
-        ls -l ~/sandbox
-        ls -l ~/sandbox/lib
+        ls -l $PYTHONLIB	
         #pip install flake8 pytest
         
     - name: Lint with flake8
