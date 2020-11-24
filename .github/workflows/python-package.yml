@@ -39,7 +39,6 @@ jobs:
         PYTHONLIB=~/sandbox/lib/python${PYTHONVERSION};
         export PYTHONPATH=$PYTHONLIB/site-packages:$PYTHONPATH
         echo $PYTHONPATH
-	export 
         #sudo python -m pip install --upgrade pip setuptools wheel
         sudo python3 -m pip install --upgrade pip setuptools wheel	
         ls -l $(which python3)
