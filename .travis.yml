@@ -49,7 +49,6 @@ before_install:
   - >
     if [ "${USE_CUDA_PARALLEL}" = "01" ] || [ "${USE_CUDA_PARALLEL}" = "11" ]; then
     which mpicc;
-    pip3 build mpi4py CC=mpicc CXX=mpicxx;    
     pip3 install mpi4py;
     python3 -c "import mpi4py;print(mpi4py.get_include())";
     fi
