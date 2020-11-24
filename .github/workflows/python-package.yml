@@ -34,27 +34,26 @@ jobs:
     - name: Install dependencies
       run: |
         mkdir -p ~/sandbox/lib
-        echo python${{ matrix.python-version }}
-        PYTHONVERSION=$(python -c "import os;print(os.path.basename(os.path.dirname(os.__file__))[-3:])")
-        PYTHONLIB=~/sandbox/lib/python${PYTHONVERSION};
+        PYTHONLIB=~/sandbox/lib/python${{ matrix.python-version }}
         export PYTHONPATH=$PYTHONLIB/site-packages:$PYTHONPATH
         echo $PYTHONPATH
         python -m pip install --upgrade pip setuptools wheel
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi	
         pip install matplotlib --prefix=~/sandbox
         python -c "import matplotlib;print(matplotlib.__file__)"	
-        #sudo python3 -m pip install --upgrade pip setuptools wheel	
         pwd
         if [ "${USE_CUDA_PARALLEL}" = "01" ] || [ "${USE_CUDA_PARALLEL}" = "11" ]; then
             sudo apt-get install mpich;
             sudo apt-get install libmpich-dev;
             pip install mpi4py --no-cache-dir --prefix=~/sandbox;
         #    ls -l ~/sandbox/lib;
-        #    python3 -c "import mpi4py;print(mpi4py.get_include())";	    
+            ls -l $PYTHONPATH	
+            python -c "import mpi4py;print(mpi4py.get_include())";	    
         fi
         ls -l ~/sandbox
         ls -l ~/sandbox/lib
-        echo $PYTHONPATH
+
+        ls -l $PYTHONPATH
         #pip install flake8 pytest
         
     - name: Lint with flake8
