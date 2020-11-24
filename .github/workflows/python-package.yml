@@ -46,7 +46,7 @@ jobs:
         if [ "${USE_CUDA_PARALLEL}" = "01" ] || [ "${USE_CUDA_PARALLEL}" = "11" ]; then
             sudo apt-get install mpich;
             sudo apt-get install libmpich-dev;
-            sudo python -m pip install mpi4py --no-cache-dir --prefix=~/sandbox;
+            sudo python3-m pip3 install mpi4py --no-cache-dir --prefix=~/sandbox;
             #python -c "import mpi4py;print(mpi4py.get_include())";
         fi
         ls -l ~/sandbox
