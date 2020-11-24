@@ -43,12 +43,15 @@ jobs:
         ls -l $(which python3)
         ls -l $(which python)
         which pip
-        which pip3	
+        which pip3
+        pwd
         if [ "${USE_CUDA_PARALLEL}" = "01" ] || [ "${USE_CUDA_PARALLEL}" = "11" ]; then
             sudo apt-get install mpich;
             sudo apt-get install libmpich-dev;
             sudo python3 -m pip install mpi4py --no-cache-dir --prefix=~/sandbox;
-            python3 -c "import mpi4py;print(mpi4py.get_include())";
+            ls -l ~/sandbox/lib;
+            ls -l ~/sandbox/lib/python3.6;	    
+            python3 -c "import mpi4py;print(mpi4py.get_include())";	    
         fi
         ls -l ~/sandbox
         ls -l ~/sandbox/lib
