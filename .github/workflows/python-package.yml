@@ -15,9 +15,9 @@ jobs:
         os: [ubuntu-latest]
         env:
            #- { USE_CUDA_PARALLEL: "00"}
-           - { USE_CUDA_PARALLEL: "10", CUDA: "10.1"}	
+           - { USE_CUDA_PARALLEL: "10", cuda: "10.1"}	
            - { USE_CUDA_PARALLEL: "01"}
-           #- { USE_CUDA_PARALLEL: "11", CUDA: "10.1"}	
+           #- { USE_CUDA_PARALLEL: "11", cuda: "10.1"}	
 
         include:
            - os: macos-latest
@@ -46,7 +46,7 @@ jobs:
         python -c "import numpy;print(numpy.__file__)"	
         pwd
         if [ "${USE_CUDA_PARALLEL}" = "11" ] || [ "${USE_CUDA_PARALLEL}" = "10" ]; then
-            echo $CUDA
+            echo $cuda
             source ./add_cuda2.sh;
             export PATH=/usr/local/cuda-11.1/bin:$PATH;
             ls -l /usr/local/
