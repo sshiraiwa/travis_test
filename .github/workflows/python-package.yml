@@ -33,7 +33,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
-        mkdir -p ~/sandbox
+        mkdir -p ~/sandbox/lib
         PYTHONVERSION=$(python -c "import os;print(os.path.basename(os.path.dirname(os.__file__))[-3:])")
         PYTHONLIB=~/sandbox/lib/python${PYTHONVERSION};
         export PYTHONPATH=$PYTHONLIB/site-packages:$PYTHONPATH
