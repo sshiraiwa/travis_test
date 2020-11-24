@@ -41,7 +41,7 @@ jobs:
         echo $PYTHONPATH
         python -m pip install --upgrade pip setuptools wheel
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi	
-	pip install matplotlib --prefix=~/sandbox
+        pip install matplotlib --prefix=~/sandbox
         #sudo python3 -m pip install --upgrade pip setuptools wheel	
         pwd
         #if [ "${USE_CUDA_PARALLEL}" = "01" ] || [ "${USE_CUDA_PARALLEL}" = "11" ]; then
