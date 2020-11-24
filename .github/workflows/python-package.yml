@@ -48,7 +48,7 @@ jobs:
         if [ "${USE_CUDA_PARALLEL}" = "11" ] || [ "${USE_CUDA_PARALLEL}" = "10" ]; then
             ./add_cuda.sh;
             export PATH=/usr/local/cuda-11.1/bin:$PATH;
-            ls -l /usr/local/cuda-11.1/bin
+            ls -l /usr/local/
         fi
         if [ "${USE_CUDA_PARALLEL}" = "01" ] || [ "${USE_CUDA_PARALLEL}" = "11" ]; then
             sudo apt-get install mpich;
