@@ -39,25 +39,23 @@ jobs:
         PYTHONLIB=~/sandbox/lib/python${PYTHONVERSION};
         export PYTHONPATH=$PYTHONLIB/site-packages:$PYTHONPATH
         echo $PYTHONPATH
-        #sudo python -m pip install --upgrade pip setuptools wheel
-        sudo python3 -m pip install --upgrade pip setuptools wheel	
-        ls -l $(which python3)
-        ls -l $(which python)
-        which pip
-        which pip3
+        python -m pip install --upgrade pip setuptools wheel
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi	
+	pip install matplotlib --prefix=~/sandbox
+        #sudo python3 -m pip install --upgrade pip setuptools wheel	
         pwd
-        if [ "${USE_CUDA_PARALLEL}" = "01" ] || [ "${USE_CUDA_PARALLEL}" = "11" ]; then
-            sudo apt-get install mpich;
-            sudo apt-get install libmpich-dev;
-            sudo python3 -m pip install mpi4py --no-cache-dir --prefix=~/sandbox;
-            ls -l ~/sandbox/lib;
-            python3 -c "import mpi4py;print(mpi4py.get_include())";	    
-        fi
+        #if [ "${USE_CUDA_PARALLEL}" = "01" ] || [ "${USE_CUDA_PARALLEL}" = "11" ]; then
+        #    sudo apt-get install mpich;
+        #    sudo apt-get install libmpich-dev;
+        #    sudo python3 -m pip install mpi4py --no-cache-dir --prefix=~/sandbox;
+        #    ls -l ~/sandbox/lib;
+        #    python3 -c "import mpi4py;print(mpi4py.get_include())";	    
+        #fi
         ls -l ~/sandbox
         ls -l ~/sandbox/lib
-        echo $PYTHONPATH
+        #echo $PYTHONPATH
         #pip install flake8 pytest
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
